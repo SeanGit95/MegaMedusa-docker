@@ -1,87 +1,61 @@
-# MegaMedusa Machine Layer-7 DDoS Tool v3.2
+# MegaMedusa Machine Layer-7 DDoS Tool v3.2 (Dockerized)
 
-## MegaMedusa V3.2 Main Display :
- ![Main](maindisplay.jpg)
+This is a Dockerized version of the MegaMedusa Layer-7 DDoS tool forked from the original GitHub repository provided by the RipperSec team. This tool is designed to bypass multiple security layers and perform high-rate HTTP(S) attacks with a zombie botnet army. The Docker deployment simplifies the installation process and allows you to run the tool easily within a containerized environment.
 
 ### What is MegaMedusa?
 - MegaMedusa is NodeJS DDoS Machine Layer-7 provided by RipperSec Team.
 
-### News About MegaMedusa :
-- https://www.radware.com/blog/security/2024/08/megamedusa-rippersec-public-web-ddos-attack-tool/
-  
- ### Security that MegaMedusa can bypass :
+## MegaMedusa V3.2 Main Display:
+ ![Main](maindisplay.jpg)
+
+### Features of MegaMedusa v3.2
 - UAM Challenges Bypass ✅
 - Cloudflare NoSec ✅
 - DDoS Guard Bypass ✅
 - vShield Website Bypass ✅
 - ShieldSquare Captcha Bypass ✅
-  
- ### Update v3.1 :
-- Lagging Fixed & More Compatible.
-- More power & bypasses.
-- Ram & Cpu Usage (Low).
-- Fixed Bugs.
+- RPS Power Improvement and smooth operation.
+- Auto Restart if RAM usage exceeds 80%.
+- Maximum DDoS Hold: 100,000K seconds.
 
- ### Update v3.2 :
-- UAM Bypass Challenge Improvement.
-- RPS Power Improvement.
-- New Ui / Display.
-- Auto Restart Attack If Ram Usage Reach 80%
-- DDoS Maximum Hold: 100,000K Seconds.
-- Device Stuck & Phone Overheating Fixed.
-- Script Run More Smoothly Compared to Version 3.1
-- VPS/RPD Suspend Problem Solved.
+For more information about MegaMedusa's capabilities, see this [blog post by Radware](https://www.radware.com/blog/security/2024/08/megamedusa-rippersec-public-web-ddos-attack-tool/).
 
-### Usage :
+### News About MegaMedusa :
+- https://www.radware.com/blog/security/2024/08/megamedusa-rippersec-public-web-ddos-attack-tool/
+
+## Dockerized Version
+This version of MegaMedusa has been Dockerized for easier deployment and execution. 
+You no longer need to manually install dependencies on your host machine.
+
+### Installation
+1. Make sure Docker is installed on your system
+2. Pull the Docker image from Docker Hub:
 ```
-Usage: node MegaMedusa.js <link> <time> <rps> <threads> <proxy> 
-Example: node MegaMedusa.js https://example.com 500 30 10 proxy.txt 
+docker pull seanr95/megamedusa:3.2
 ```
 
-### Instructions :
-- **Target**: By entering the victim's link target, you will be able to run a zombie botnet army to attack the victim
-- **RPS**: Requests per second: A metric that measures the throughput of a system
-- **Threads**: threads is a measure of bytes
-- **Proxy**: While using proxy, you will attack in different ip & country and make traffic flooding
+### Usage
+Run the following command to execure the tool:
+```
+docker run -d --name medusa1 seanr95/megamedusa bash -c "python3 scrape.py && node MegaMedusa.js https://example.com 500 100 30 /app/proxy.txt"
+```
+#### Breakdown of parameters:
+- https://example.com: The target URL.
+- 500: Attack duration in seconds.
+- 100: Requests per second (RPS).
+- 30: Number of threads.
+- /app/proxy.txt: The path to the proxy list inside the container.
 
-### Installation Command :
-```
-python3 nvminstall.py
-python3 installer.py
-------------------------
-After this commands installed. Restart your terminal.
-```
-### Note: Please make sure your NodeJS Version is V20 :
-```
--> NodeJS Version Command Check :
-nodejs -v
-```
+The python3 scrape.py command scrapes the proxy list before running the attack.
 
-### Proxy Scrape Command :
+### Viewing Logs
+To see the output and logs of the attack:
 ```
-python3 scrape.py
+docekr logs -f medusa1
 ```
-### OS Support :
-- Debian.
-- Ubuntu (Recommended).
-- Kali Linux.
-- Termux.
-- Windows.
+This will follow the logs in real-time, allowing you to monitor the progress of the attack.
 
 ### Minimum Device Specifications :
 - 2GB Ram.
 - 2 Core.
-- Internet Speed Minimum 30mbps.
-
-## Refference :
-<a href="https://t.me/RipperSec"><img title="Telegram" src="https://img.shields.io/badge/RipperSec-blue?style=for-the-badge&logo=telegram"></a>
-
-## If you want to donate, click on the button :
-<a href="https://sociabuzz.com/kudagila/donate"><img title="Donate" src="https://img.shields.io/badge/Donate-KudaGila-yellow?style=for-the-badge&logo=github"></a>
-```
-bc1q5z9kccxvwcx6dk9hsmezvhfg8yqjyj0hs3v52v (BTC)
-```
-
-## Disclaimer :
-- This tool only for Education, Pentesting, and Research Purposes!
-- MegaMedusa Power depends from your Device Specs. Don't blame this script not power if your phone sucks.
+- Minimum 30mbps Internet Speed
