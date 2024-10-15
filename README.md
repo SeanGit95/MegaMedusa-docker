@@ -31,7 +31,7 @@ You no longer need to manually install dependencies on your host machine.
 1. Make sure Docker is installed on your system
 2. Pull the Docker image from Docker Hub:
 ```
-docker pull seanr95/megamedusa:3.2
+docker pull seanr95/megamedusa
 ```
 
 ### Usage
